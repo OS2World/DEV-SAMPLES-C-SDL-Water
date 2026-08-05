@@ -6,6 +6,8 @@ DJGPP/SDL1 by Scott Scriven. This repository contains an SDL2 port targeting
 
 ![Water simulation running on ArcaOS](water320.bmp)
 
+![Water ScreenShot](/wiki/water.png)
+
 ## Description
 
 The demo renders a 320×200 water surface over a paletted BMP background image.
