@@ -1,0 +1,35 @@
+# Makefile.os2 -- Water SDL2 demo for ArcaOS/OS2, GCC 9.2/kLIBC
+
+SHELL  = sh
+CC     = gcc
+
+CFLAGS = -O2 \
+         -Wall \
+         -Wno-implicit-function-declaration \
+         -Wno-implicit-int \
+         -Isrc \
+         -I/@unixroot/usr/include \
+         -I/@unixroot/usr/include/SDL2
+
+LDFLAGS = -Zomf -Zhigh-mem -Zmap
+
+LIBS = /@unixroot/usr/lib/SDL2_dll.a \
+       -lm
+
+TARGET = water.exe
+
+SRCS = src/water.c src/fixsin.c src/fps.c
+OBJS = $(SRCS:.c=.obj)
+
+all: $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LDFLAGS) -o $@ $(OBJS) $(LIBS)
+
+%.obj: %.c
+	$(CC) $(CFLAGS) -c -o $@ $<
+
+clean:
+	-rm -f $(OBJS) $(TARGET) water.map src/*.obj
+
+.PHONY: all clean
